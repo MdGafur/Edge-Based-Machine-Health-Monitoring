@@ -1,0 +1,37 @@
+Two-stage training report  2026-11-17T02:25:45
+Firmware: fw2   model features: ['current_mA', 'microphone_rms_raw', 'vibration_rms', 'vibration_peak_to_peak']
+Rows dropped for NaN: 0
+normal: 900 rows, sessions=['20261114_112204', '20261114_113556', '20261114_154707']
+abnormal_sound: 600 rows, sessions=['20261114_131937', '20261114_181631']
+abnormal_vibration: 600 rows, sessions=['20261114_133252', '20261114_203936']
+
+Class profile (mean +/- std) - how far apart the classes really are
+  normal: current_mA=73.52+/-19.3, microphone_rms_raw=7.23e+04+/-1.15e+04, vibration_rms=0.0811+/-0.00706, vibration_peak_to_peak=0.1622+/-0.0374
+  abnormal_sound: current_mA=77.4+/-18.8, microphone_rms_raw=1.313e+05+/-2.34e+04, vibration_rms=0.2271+/-0.0379, vibration_peak_to_peak=0.4373+/-0.122
+  abnormal_vibration: current_mA=71.64+/-18, microphone_rms_raw=1.344e+05+/-3.37e+04, vibration_rms=0.3261+/-0.0994, vibration_peak_to_peak=0.6095+/-0.215
+
+Stage 1 (Isolation Forest, trained on normal only)
+Held-out normal rows: 300, false alarms 4 (1.33%)
+Share of abnormal rows flagged ANOMALY: 100.00%
+Stage 1 without current_mA (comparison): false alarms 2.67%, abnormal flagged 100.00%
+
+Stage 2 (Random Forest, sound vs vibration) inputs: ['microphone_rms_raw', 'vibration_rms', 'vibration_peak_to_peak']
+Held-out rows: 600, accuracy 50.00%
+Confusion matrix (rows=true, cols=pred, order=['ABNORMAL_SOUND', 'ABNORMAL_VIBRATION']): [[2, 298], [2, 298]]
+Which inputs carry the separation (same split, one input group at a time):
+  all four inputs incl. current (comparison): 50.33%
+  microphone only: 35.50%
+  vibration only: 49.50%
+  current only: 45.00%
+
+Physical gates (from all normal recordings)
+  vibration_rms gate 0.1226: held-out normal above 0.00%, held-out vibration above 99.67%
+  microphone_rms_raw gate 1.377e+05: held-out normal above 0.00%, held-out sound above 2.33%
+Cross-check: share of each abnormal class that exceeds BOTH gates (classes overlap if both are high)
+  sound: 2.33%
+  vibration: 52.00%
+
+Evaluation notes
+  - normal: held out whole session 20261114_154707
+  - abnormal_sound: held out whole session 20261114_181631
+  - abnormal_vibration: held out whole session 20261114_203936

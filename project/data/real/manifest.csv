@@ -1,0 +1,8 @@
+file,label,session,firmware,rows,started,notes
+abnormal_sound_20261114_131350.csv,abnormal_sound,20261114_131350,fw2,181,2026-11-14T13:13:55,"fw2, phone speaker 30 cm from mic, steady tone"
+abnormal_sound_20261114_131937.csv,abnormal_sound,20261114_131937,fw2,300,2026-11-14T13:19:42,"fw2, phone speaker 30 cm from mic, steady tone"
+abnormal_vibration_20261114_133252.csv,abnormal_vibration,20261114_133252,fw2,300,2026-11-14T13:32:57,"fw2, coin taped on blade 1"
+normal_20261114_154707.csv,normal,20261114_154707,fw2,300,2026-11-14T15:47:12,"fw2, fresh check after dashboard test"
+abnormal_sound_test_sound5.csv,abnormal_sound,test_sound5,fw2,20,2026-11-14T18:11:13,volume check
+abnormal_sound_20261114_181631.csv,abnormal_sound,20261114_181631,fw2,300,2026-11-14T18:16:36,"fw2, speaker held 3 cm from mic off-table, white noise"
+abnormal_vibration_20261114_203936.csv,abnormal_vibration,20261114_203936,fw2,300,2026-11-14T20:39:41,"fw2, fan and table shaken by hand, no weight"
